@@ -2,7 +2,7 @@ import '../styles/header.css'
 import Button from '../shared/Button'
 
 
-const Header = () => {
+const Header = ({headerText , btn1Text , btn2Text}) => {
 
     const onAddButtonClicked = ()=>{
         console.log('Add button clicked');
@@ -17,17 +17,17 @@ const Header = () => {
             <div className = 'header'>
 
                 <div className = 'header-text'>
-                    Product List
+                    {headerText}
                     </div>
 
                 <div className = 'right-part'>
 
-                    <div className = 'add-button-div'>
-                    <Button  text = 'ADD' onClick = {onAddButtonClicked} />
+                    <div className = 'header-button'>
+                    <Button  text = {btn1Text} onClick = {onAddButtonClicked} />
                     </div>
 
-                    <div className = 'delete-button-div'>
-                    <Button  text = 'MASS DELETE' onClick = {onDeleteButtonClicked} />
+                    <div className = 'header-button'>
+                    <Button id='delete-product-btn' text = {btn2Text} onClick = {onDeleteButtonClicked} />
                     </div>
                     
                 </div>

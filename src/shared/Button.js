@@ -1,10 +1,10 @@
 
 
-const Button = ({text , onClick})=>{
+const Button = ({text , onClick , id})=>{
   
     
     return(
-        <button className = 'header-button'  onClick = {onClick}>
+        <button id = {id} onClick = {onClick} style={{cursor:"pointer"}}  >
         
         {text}
 

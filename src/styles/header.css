@@ -23,6 +23,7 @@
 }
 
 .header-button{
+    margin-left: 12px;
     font-size: 17px;
     border-color: black;
     border-style: solid;
