@@ -1,9 +1,9 @@
 import '../styles/product.css'
 
-const Product = ({product}) => {     //design of each product
+const Product = ({product , onCheckBoxChanged}) => {     //design of each product
     return (
         <div className = 'product'>
-            <div className = 'delete-checkbox'>  <input type ='checkbox'  /> </div>
+            <div className = 'delete-checkbox'>  <input type ='checkbox' value = {product.id} onChange = {onCheckBoxChanged}  /> </div>
             <div className ='text-container'  >
                 <div>{product.sku}</div>
                 <div>{product.name}</div>

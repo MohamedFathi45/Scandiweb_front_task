@@ -2,7 +2,7 @@ import '../styles/header.css'
 import Button from '../shared/Button'
 
 
-const Header = ({headerText , btn1Text , btn2Text , button1Clicked , button2Clicked}) => {
+const Header = ({headerText , btn1Text , btn2Text , button1Clicked , button2Clicked , button1Id , button2Id}) => {
 
 
 
@@ -17,11 +17,11 @@ const Header = ({headerText , btn1Text , btn2Text , button1Clicked , button2Clic
                 <div className = 'right-part'>
 
                     <div className = 'header-button'>
-                    <Button  text = {btn1Text} onClick = {button1Clicked} />
+                    <Button id = {button1Id} text = {btn1Text} onClick = {button1Clicked} />
                     </div>
 
                     <div className = 'header-button'>
-                    <Button id='delete-product-btn' text = {btn2Text} onClick = {button2Clicked} />
+                    <Button id ={button2Id}  text = {btn2Text} onClick = {button2Clicked} />
                     </div>
                     
                 </div>

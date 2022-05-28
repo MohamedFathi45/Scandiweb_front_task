@@ -1,9 +1,9 @@
 import '../../styles/body_grid.css'
 import Products from '../../shared/Products';
-const Body = ({products}) => {
+const Body = ({products , onCheckBoxChanged}) => {
     return (
         <div className = 'body-grid'>
-            <Products products = {products} />
+            <Products products = {products} onCheckBoxChanged = {onCheckBoxChanged} />
         </div>
     )
 }

@@ -1,10 +1,10 @@
 import Product from './Product'
-const Products = ({products}) => {
+const Products = ({products , onCheckBoxChanged}) => {
     return (
         <>
         {
             products.map( (product) =>(
-                <Product key ={product.id} product = {product} />
+                <Product key ={product.id} product = {product} onCheckBoxChanged = {onCheckBoxChanged}/>
             ) )
         }   
         </>
