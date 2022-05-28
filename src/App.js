@@ -1,7 +1,7 @@
 import Header from './shared/Header'; 
 import Body from './components/getProducts/Body'; 
 import Footer from './shared/Footer';
-import {BrowserRouter as Router , Route , Switch} from 'react-router-dom';
+import {BrowserRouter as Router , Route , Switch } from 'react-router-dom';
 import AddProducts from './components/addProducts/AddProducts';
 import {useState , useEffect} from 'react';
 
@@ -24,6 +24,13 @@ function App() {
     return data;
   }
 
+
+  const onAddProductButtonClicked = ()=>{
+
+  }
+  const onCancelButtonClicked = ()=>{
+  
+  }
   return (
 
     <Router>
@@ -34,7 +41,7 @@ function App() {
               <AddProducts/>
           </Route>
           <Route path = "/">
-              <Header headerText ='Product List' btn1Text='ADD' btn2Text='MASS DELETE'/>
+              <Header headerText ='Product List' btn1Text='ADD' btn2Text='MASS DELETE' button1Clicked = {onAddProductButtonClicked} button2Clicked = {onCancelButtonClicked}  />
               <Body products = {products}/>
               <Footer/>
           </Route>
