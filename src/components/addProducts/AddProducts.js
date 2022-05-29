@@ -6,9 +6,21 @@ import '../../styles/combobox.css'
 import Select from 'react-select'
 import {useEffect , useState} from 'react'
 import React from 'react'
-import * as ReactDOM from 'react-dom/client';
+import { useHistory} from 'react-router-dom';
+
+
 const AddProducts = () => {
     const [products , setProducts] = useState([])
+    const [options , setOptions] = useState([])
+    
+    const history = useHistory();
+    let generalInputs = {
+      "SKU" :"",
+      "Name" :"",
+      "Price" :""
+    };
+    let concreteInputs = {};
+    let inputCnt = 3;
 
 
     useEffect(()=>{
@@ -20,11 +32,52 @@ const AddProducts = () => {
         getProducts();
       } , [])
       
+      const  onGeneralInputChange = (event) =>{
+        console.log('insize general change function');
+        const feild_name =event.target.name;
+        const feild_value = event.target.value.trim();
+        console.log(generalInputs[feild_name]);
+        console.log(feild_value);
+        if(generalInputs[feild_name] === "" && feild_value !== ""){
+            console.log('was empty but now not');
+            inputCnt --;
+        }
+        else if(feild_value === "" && generalInputs[feild_name] !== ""){
+          console.log('wasnot empty but now empty');
+            inputCnt ++;
+        }
+        generalInputs[feild_name] = event.target.value;
+      }
+
+      const onConcreteInputChange = (event) =>{
+        const feild_name =event.target.name;
+        const feild_value = event.target.value.trime
+        if(concreteInputs[feild_name] === "" && feild_value !== "") 
+            inputCnt --;
+        else if(feild_value === "" && concreteInputs[feild_name] !== "")
+            inputCnt ++;
+        concreteInputs[feild_name] = event.target.value;
+      }
+
+      const optionsJSX = React.createElement( (()=>{
+        return (
+         options.map((v) => {
+            return (
+                <>
+                 <FormInput feild_name = {v} placeHolder = {v} id = {v} onChange = {onConcreteInputChange}/>
+               </>
+            )
+        
+        }))
+      }))
+
+
       const getProcessedProducts = () =>{
         let proccessed = [];
           let temp = Object;
           for( const key in products){
             temp = {
+               'id' : key,
                'value' : key,
                'label' : key
             }
@@ -41,38 +94,37 @@ const AddProducts = () => {
 
       const onChange = (event) => {
         const value = event.value;
-        const root = document.getElementById('product-feilds');
-        const reactRoot = ReactDOM.createRoot(root);
-       
-        let elements = [];
-        products[value].map( (v)=>{
-          const element = <div className = {v} style ={{ marginLeft :'80px' , marginTop :'20px',display:'grid' , gridTemplateColumns : '90px 250px' , alignItems:'center'}}> 
-          <div>
-              <label style={{fontSize : '20px' } }> {v} </label>
-          </div>
-          <div>
-              <input  style = {{fontSize:'20px'}} type = 'text' placeholder = {v}/>
-          </div>
-      </div>
-          elements.push(element); 
-        }  )
-
-        reactRoot.render(elements);
+        setOptions(products[value]);
+        concreteInputs = {};
+        console.log('the elements size is');
+        inputCnt += products[value].length;
+        console.log(inputCnt);
         
       };  
 
+      const onSaveButtonClicked = ()=>{
+        // for (const [key, value] of Object.entries(inputs)){
+        //   console.log(key);
+        //   console.log(value);
+        // }
+        console.log(inputCnt);
+      }
+      const onCancelButtonClicked = ()=>{
+          history.push('/');
+      }
+
     return (
          <div>
-             <Header headerText ='Product Add' btn1Text='Save' btn2Text='Cancel'/>
+             <Header headerText ='Product Add' btn1Text='Save' btn2Text='Cancel'
+              button1Clicked = {onSaveButtonClicked} button2Clicked = {onCancelButtonClicked}/>
 
             <div className = 'product_form'>
-                  <form >
-                      <FormInput feild_name = 'SKU' placeHolder ='add product sku' id = 'sku-feild'/>
-                      <FormInput feild_name = 'Name' placeHolder ='add product name' id = 'name-feild' />
-                      <FormInput feild_name = 'Price ($)' placeHolder ='add product price' id = 'price-feild' />
-                  </form>
-            </div>
-                 <div className = 'combobox' >
+                  <form  id = 'product_form'>
+                      <FormInput feild_name = 'SKU' placeHolder ='add product sku' id = 'sku-feild' onChange = {onGeneralInputChange}/>
+                      <FormInput feild_name = 'Name' placeHolder ='add product name' id = 'name-feild' onChange = {onGeneralInputChange} />
+                      <FormInput feild_name = 'Price' placeHolder ='add product price' id = 'price-feild' onChange = {onGeneralInputChange} />
+
+                      <div className = 'combobox' >
                    <div>
                      Type Switcher
                    </div>
@@ -84,8 +136,17 @@ const AddProducts = () => {
                     
                  </div>
               </div>
+              <div id = 'product-feilds'  >
+                {
+                  optionsJSX
+                }
+              </div>
 
-              <div id = 'product-feilds'  ></div>
+                  </form>
+                  
+            </div>
+                 
+
              <Footer/>
         </div>
     )
