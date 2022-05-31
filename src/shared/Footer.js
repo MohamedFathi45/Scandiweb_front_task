@@ -1,15 +1,12 @@
-
-import '../styles/footer.css'
+import "../styles/footer.css";
 const Footer = () => {
-    return (
-        <footer>
-            <div className = 'footer'>
-                    <div className = 'footer-text'>
-                    Scandiweb Test assignment
-                    </div>
-            </div>
-        </footer>
-    )
-}
+  return (
+    <footer>
+      <div className="footer">
+        <div className="footer-text">Scandiweb Test assignment</div>
+      </div>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;
