@@ -80,7 +80,7 @@ const AddProducts = () => {
       values["type"] = type;
       console.log(JSON.stringify(values));
       fetch(
-        "https://voided-lack.000webhostapp.com/scandiweb_task/addproduct.php",
+        "http://localhost:3000/addproduct.php",
         {
           method: "POST",
           body: JSON.stringify(values),
@@ -107,7 +107,7 @@ const AddProducts = () => {
 
   const fetchProducts = async () => {
     const res = await fetch(
-      "https://voided-lack.000webhostapp.com/scandiweb_task/products.php"
+      "http://localhost:3000/products.php"
     );
     const data = await res.json();
     return data;
