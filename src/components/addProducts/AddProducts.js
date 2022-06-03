@@ -24,7 +24,6 @@ const AddProducts = () => {
   }, []);
 
   const optionsJSX = React.createElement(() => {
-    console.log(options);
     return options.map((v) => {
         return (
           <>
@@ -78,7 +77,6 @@ const AddProducts = () => {
       setErrors([]);
       values = getJsonObject(values);
       values["type"] = type;
-      console.log(JSON.stringify(values));
       fetch(
         "https://voided-lack.000webhostapp.com/scandiweb_task/addproduct.php",
         {
