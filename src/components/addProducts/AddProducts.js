@@ -80,7 +80,7 @@ const AddProducts = () => {
       values["type"] = type;
       console.log(JSON.stringify(values));
       fetch(
-        "http://localhost:3000/addproduct.php",
+        "https://voided-lack.000webhostapp.com/scandiweb_task/addproduct.php",
         {
           method: "POST",
           body: JSON.stringify(values),
@@ -94,11 +94,10 @@ const AddProducts = () => {
   const getProcessedProducts = () => {
     let proccessed = [];
     let temp = Object;
+    proccessed.push({'value' : 'Choose Type'})
     for (const key in products) {
       temp = {
-        id: key,
         value: key,
-        label: key,
       };
       proccessed.push(temp);
     }
@@ -107,17 +106,18 @@ const AddProducts = () => {
 
   const fetchProducts = async () => {
     const res = await fetch(
-      "http://localhost:3000/products.php"
+      "https://voided-lack.000webhostapp.com/scandiweb_task/products.php"
     );
     const data = await res.json();
     return data;
   };
 
   const onChange = (event) => {
-    const value = event.value;
-    setType(value);
-    console.log(type);
+    const value = event.target.value;
+    if(value === 'Choose Type')
+      return;
     setOptions(products[value]);
+    setType(value)
   };
 
   const onCancelButtonClicked = () => {
@@ -151,11 +151,13 @@ const AddProducts = () => {
           <div className="combobox">
             <div>Type Switcher</div>
             <div>
-              <Select
-                id="productType"
-                options={getProcessedProducts()}
-                onChange={onChange}
-              />
+              <select name = 'type switcher' id ='productType' onChange = {onChange}>
+                {
+                  getProcessedProducts().map( (element)=>{
+                      return <option value = {element.value} id = {element.value} label = {element.value} key = {element.value} ></option>
+                  } )
+                }
+              </select>
             </div>
           </div>
           <div id="product-feilds">{optionsJSX}</div>

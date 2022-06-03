@@ -29,7 +29,7 @@ export const HomePage = () => {
 
   const fetchProducts = async () => {
     const res = await fetch(
-      "http://localhost:3000/index.php"
+      "https://voided-lack.000webhostapp.com/scandiweb_task/index.php"
     );
     const data = await res.json();
     return data;
@@ -41,7 +41,7 @@ export const HomePage = () => {
   const onDeleteButtonClicked = () => {
     const json_ret = { data: checked };
     fetch(
-      "http://localhost:3000/deleteproduct.php",
+      "https://voided-lack.000webhostapp.com/scandiweb_task/deleteproduct.php",
       {
         method: "POST",
         body: JSON.stringify(json_ret),
