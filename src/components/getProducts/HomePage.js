@@ -39,6 +39,8 @@ export const HomePage = () => {
     history.push("/addproduct");
   };
   const onDeleteButtonClicked = () => {
+    if(checked.length === 0)
+      return;
     const json_ret = { data: checked };
     fetch(
       "https://voided-lack.000webhostapp.com/scandiweb_task/deleteproduct.php",

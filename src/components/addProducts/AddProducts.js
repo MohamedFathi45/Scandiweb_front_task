@@ -3,7 +3,6 @@ import Footer from "../../shared/Footer";
 import FormInput from "../../shared/FormInput";
 import "../../styles/input_form.css";
 import "../../styles/combobox.css";
-import Select from "react-select";
 import { useEffect, useState } from "react";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -25,12 +24,13 @@ const AddProducts = () => {
   }, []);
 
   const optionsJSX = React.createElement(() => {
+    console.log(options);
     return options.map((v) => {
-      return (
-        <>
-          <FormInput feild_name={v} placeHolder={v} id={v.toLowerCase()} />
-        </>
-      );
+        return (
+          <>
+            <FormInput feild_name={v} placeHolder={v} id={v.toLowerCase()} />
+          </>
+        );
     });
   });
 
@@ -115,8 +115,9 @@ const AddProducts = () => {
   const onChange = (event) => {
     const value = event.target.value;
     if(value === 'Choose Type')
-      return;
-    setOptions(products[value]);
+      setOptions([])
+    else
+      setOptions(products[value]);
     setType(value)
   };
 
