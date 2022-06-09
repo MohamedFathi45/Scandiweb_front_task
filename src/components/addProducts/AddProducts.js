@@ -78,7 +78,7 @@ const AddProducts = () => {
       values = getJsonObject(values);
       values["type"] = type;
       fetch(
-        "https://voided-lack.000webhostapp.com/scandiweb_task/addproduct.php",
+        "https://voided-lack.000webhostapp.com/scandiweb_task/index.php/addproduct",
         {
           method: "POST",
           body: JSON.stringify(values),
@@ -104,7 +104,7 @@ const AddProducts = () => {
 
   const fetchProducts = async () => {
     const res = await fetch(
-      "https://voided-lack.000webhostapp.com/scandiweb_task/products.php"
+      "https://voided-lack.000webhostapp.com/scandiweb_task/index.php/products"
     );
     const data = await res.json();
     return data;

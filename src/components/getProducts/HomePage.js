@@ -43,7 +43,7 @@ export const HomePage = () => {
       return;
     const json_ret = { data: checked };
     fetch(
-      "https://voided-lack.000webhostapp.com/scandiweb_task/deleteproduct.php",
+      "https://voided-lack.000webhostapp.com/scandiweb_task/index.php/deleteproduct",
       {
         method: "POST",
         body: JSON.stringify(json_ret),
